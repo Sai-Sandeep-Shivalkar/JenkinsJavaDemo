@@ -1,0 +1,26 @@
+@echo off
+
+REM Configure the actual Windows JDK path.
+set "JAVA_HOME=C:\Program Files\Java\jdk-26"
+set "PATH=%JAVA_HOME%\bin;%PATH%"
+
+REM Display Java version.
+java -version
+javac -version
+
+REM Compile downloaded Java source.
+javac Student.java
+
+REM Check compilation.
+if errorlevel 1 (
+    echo Compilation Failed!
+    exit /b 1
+)
+
+echo Compilation Successful!
+
+REM Execute Java application.
+java Student
+
+REM Verify generated class file.
+dir Student.class
