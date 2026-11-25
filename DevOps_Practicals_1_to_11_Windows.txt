@@ -1,0 +1,1319 @@
+DEVOPS PRACTICAL EXAM - PRACTICALS 1 TO 11
+WINDOWS EXAM GUIDE
+
+GENERAL NOTES
+- Create folders and files using Windows File Explorer, Notepad, or VS Code.
+- Use Command Prompt for Git and Maven commands.
+- Use the instructor-provided starter files whenever available. Preserve their filenames, class names, package names, HTML IDs, and folder structure.
+- Use local Git identity on a public/shared computer. Do not use --global.
+- Replace YOUR_GITHUB_REPOSITORY_URL and YOUR_GITLAB_REPOSITORY_URL with the actual URL copied from your repository.
+- Never save passwords or access tokens in this file or in a public GitHub repository.
+- Jenkins on a Windows agent: choose Execute Windows batch command. Jenkins on your Mac: choose Execute shell and use the Mac alternatives in Practicals 6 and 7.
+
+============================================================
+PRACTICAL 1 - INITIALIZE A GIT REPOSITORY AND PERFORM BASIC OPERATIONS
+============================================================
+AIM:
+Create a StudentManagement project, initialize Git, stage and commit files, modify a file, view commit history, compare changes, and finish with a clean working tree.
+
+STEP 1 - CREATE PROJECT USING FILE EXPLORER
+1. Create a folder named StudentManagement.
+2. Copy the instructor-provided README.md into this folder. Do not create a replacement if one was supplied.
+
+Expected structure:
+StudentManagement\
+    README.md
+
+STEP 2 - OPEN COMMAND PROMPT IN THE PROJECT FOLDER
+Open StudentManagement in File Explorer. Click the address bar, type cmd, and press Enter.
+
+STEP 3 - CONFIGURE GIT IDENTITY LOCALLY
+Use your own name and email:
+    git config user.name "Your Name"
+    git config user.email "your-email@example.com"
+
+Check:
+    git config user.name
+    git config user.email
+
+STEP 4 - INITIALIZE GIT AND CHECK STATUS
+    git init
+    git status
+
+STEP 5 - STAGE THE FILES
+    git add .
+    git status
+    git diff --staged
+
+STEP 6 - CREATE FIRST COMMIT
+    git commit -m "Initial commit for StudentManagement"
+    git log --oneline
+
+STEP 7 - MODIFY README.MD USING NOTEPAD OR VS CODE
+1. Open README.md.
+2. Keep the original content and add a Features heading and one or two feature lines at the bottom.
+3. Save the file.
+
+Example lines (only if suitable for the instructor's README):
+    Features:
+    - Add student records
+    - View student details
+    - Manage student information
+
+STEP 8 - VIEW UNSTAGED CHANGES
+    git status
+    git diff
+
+STEP 9 - STAGE AND COMMIT THE MODIFICATION
+    git add README.md
+    git status
+    git diff --staged
+    git commit -m "Add StudentManagement features"
+
+STEP 10 - VIEW HISTORY AND COMPARE COMMITS
+    git log --oneline
+    git show --stat --oneline HEAD
+    git diff HEAD~1 HEAD
+
+STEP 11 - CHECK FINAL STATUS
+    git status
+Expected: nothing to commit, working tree clean.
+
+IMPORTANT COMMANDS:
+    git init                 Initialize repository
+    git status               Check status
+    git add .                Stage all files
+    git commit -m "message" Create a commit
+    git diff                 Show unstaged changes
+    git diff --staged        Show staged changes
+    git log --oneline        Show commit history
+    git diff HEAD~1 HEAD     Compare previous and latest commits
+
+============================================================
+PRACTICAL 2 - CREATE A GITHUB REPOSITORY AND PUSH A LOCAL PROJECT
+============================================================
+AIM:
+Create a College Website, initialize Git, connect the local project to GitHub, push files, modify the website, and push the update.
+
+STEP 1 - CREATE FOLDER AND FILES USING FILE EXPLORER
+Create:
+CollegeWebsite\
+    index.html
+    style.css
+
+STEP 2 - index.html
+Use the instructor-provided HTML. The code shared for this practical is:
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>College Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>ABC College</h1>
+        <p>Learning, Innovation and Excellence</p>
+    </header>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#courses">Courses</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <main>
+        <section id="about">
+            <h2>About Us</h2>
+            <p>Welcome to ABC College.</p>
+        </section>
+        <section id="courses">
+            <h2>Courses</h2>
+            <ul>
+                <li>Information Technology</li>
+                <li>Computer Engineering</li>
+                <li>Electronics</li>
+            </ul>
+        </section>
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Email: info@example.edu</p>
+        </section>
+    </main>
+    <footer>© ABC College</footer>
+</body>
+</html>
+
+STEP 3 - style.css
+Use the instructor-provided CSS. The code shared for this practical is:
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    color: #222;
+}
+
+header, footer {
+    background: #17365d;
+    color: white;
+    text-align: center;
+    padding: 24px;
+}
+
+nav {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    background: #e8eef5;
+    padding: 14px;
+}
+
+nav a {
+    color: #17365d;
+    text-decoration: none;
+}
+
+main {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+section {
+    margin: 28px 0;
+}
+
+STEP 4 - TEST THE WEBSITE
+Double-click index.html. Confirm that the college heading, navigation, courses, and contact section appear in the browser.
+
+STEP 5 - CREATE A BLANK GITHUB REPOSITORY
+1. Sign in to GitHub.
+2. Choose New repository.
+3. Name it CollegeWebsite.
+4. Choose the required visibility.
+5. Leave "Add a README file" unchecked because the local project already has files.
+6. Create the repository and copy its HTTPS URL.
+
+STEP 6 - OPEN CMD IN CollegeWebsite
+Open the CollegeWebsite folder in File Explorer, type cmd in the address bar, and press Enter.
+
+STEP 7 - SET LOCAL GIT IDENTITY
+    git config user.name "Your Name"
+    git config user.email "your-email@example.com"
+
+STEP 8 - INITIALIZE, STAGE, AND COMMIT
+    git init
+    git status
+    git add .
+    git status
+    git commit -m "Create CollegeWebsite"
+
+STEP 9 - CONNECT TO GITHUB
+    git branch -M main
+    git remote add origin YOUR_GITHUB_REPOSITORY_URL
+    git remote -v
+
+STEP 10 - PUSH TO GITHUB
+    git push -u origin main
+Refresh the GitHub repository page. index.html and style.css should appear.
+
+STEP 11 - MODIFY AND PUSH AN UPDATE
+1. Open index.html in Notepad or VS Code.
+2. Add a line such as <h2>Admissions Open!</h2> inside the main element.
+3. Save the file.
+4. In CMD run:
+    git add .
+    git commit -m "Update CollegeWebsite homepage"
+    git push
+
+IMPORTANT:
+- git commit saves changes in the local repository.
+- git push uploads commits to GitHub.
+- For HTTPS authentication, use the authentication method requested by GitHub (usually a credential manager or personal access token), not your normal account password. Never share a token.
+
+============================================================
+PRACTICAL 3 - CLONE AN EXISTING GITHUB REPOSITORY AND UPDATE IT
+============================================================
+AIM:
+Clone the examiner-provided repository, inspect files, modify an existing file, create a new file, commit changes, and push updates.
+
+STEP 1 - COPY THE REPOSITORY URL
+1. Open the GitHub repository given by the examiner.
+2. Click Code, select HTTPS, and copy the URL.
+
+STEP 2 - OPEN CMD IN THE LOCATION WHERE YOU WANT THE CLONE
+For example, open Documents in File Explorer, type cmd in the address bar, and press Enter.
+
+STEP 3 - CLONE THE REPOSITORY
+    git clone YOUR_REPOSITORY_URL
+
+STEP 4 - ENTER THE CLONED FOLDER
+    cd REPOSITORY_FOLDER_NAME
+    dir
+    git status
+    git remote -v
+
+NOTE: git clone already creates the local repository and configures the remote named origin. Do not run git init or git remote add origin after cloning.
+
+STEP 5 - SET LOCAL GIT IDENTITY
+    git config user.name "Your Name"
+    git config user.email "your-email@example.com"
+
+STEP 6 - MODIFY AN EXISTING FILE USING GUI
+1. Open the cloned folder in File Explorer or VS Code.
+2. Open README.md (or the file specified by the examiner).
+3. Add a short update while preserving the original content. Example:
+    Project Update
+    Updated the project documentation.
+4. Save the file.
+
+STEP 7 - CREATE A NEW FILE USING GUI
+Create contribution.txt in the cloned project folder and add:
+    Contribution: Updated project files.
+Save the file.
+
+STEP 8 - CHECK CHANGES
+    git status
+    git diff
+
+STEP 9 - STAGE AND COMMIT
+    git add .
+    git status
+    git diff --staged
+    git commit -m "Update project and add contribution file"
+
+STEP 10 - CHECK BRANCH AND PUSH
+    git branch
+    git push
+
+If Git says there is no upstream branch, push the current branch by using its actual name, for example:
+    git push -u origin main
+
+STEP 11 - VERIFY ON GITHUB
+Refresh the repository page. Confirm the updated file and contribution.txt are visible and the latest commit appears.
+
+IMPORTANT:
+- A clone downloads the repository and its history.
+- origin is the remote created by clone.
+- If you do not have permission to push to the examiner's repository, ask for access or use a fork if allowed. Do not force-push.
+
+============================================================
+PRACTICAL 4 - GIT COMMIT HISTORY AND VERSION COMPARISON
+============================================================
+AIM:
+Create LibraryManagement, make multiple commits, demonstrate staged and unstaged changes, view file history, and compare commits.
+
+STEP 1 - CREATE FOLDER AND FILES USING GUI
+Create:
+LibraryManagement\
+    README.md
+    books.txt
+
+Sample README.md content:
+    Library Management System
+    Features:
+    - Manage books
+    - Track issued books
+
+Sample books.txt content:
+    B001 - Java Programming
+    B002 - Python Basics
+
+STEP 2 - OPEN CMD IN LibraryManagement AND SET LOCAL IDENTITY
+    git config user.name "Your Name"
+    git config user.email "your-email@example.com"
+
+STEP 3 - INITIAL COMMIT
+    git init
+    git add .
+    git commit -m "Initial library project"
+
+STEP 4 - MAKE SECOND CHANGE USING GUI
+Add a line to README.md:
+    - Search books
+Add a line to books.txt:
+    B003 - Clean Code
+Save both files, then run:
+    git status
+    git add .
+    git commit -m "Add book search and new book"
+
+STEP 5 - MAKE AN UNSTAGED CHANGE
+Add this line at the bottom of README.md using Notepad or VS Code:
+    - Return books
+Save, then run:
+    git status
+    git diff
+
+STEP 6 - STAGE THE CHANGE AND VIEW STAGED DIFFERENCE
+    git add README.md
+    git status
+    git diff
+    git diff --staged
+
+STEP 7 - COMMIT THE CHANGE
+    git commit -m "Document return-book feature"
+
+STEP 8 - CREATE ANOTHER COMMIT
+Add this line to books.txt using the GUI:
+    B004 - Database Management
+Save, then run:
+    git add books.txt
+    git commit -m "Add database management book"
+
+STEP 9 - VIEW COMPLETE AND FILE-SPECIFIC HISTORY
+    git log --oneline
+    git log --oneline -- README.md
+    git log -p -- README.md
+
+STEP 10 - COMPARE VERSIONS
+    git diff HEAD~1 HEAD
+    git diff --stat HEAD~1 HEAD
+    git show HEAD
+
+STEP 11 - CHECK FINAL STATUS
+    git status
+Expected: nothing to commit, working tree clean.
+
+REMEMBER:
+- git diff = unstaged changes.
+- git diff --staged = staged changes compared with the last commit.
+- git diff HEAD~1 HEAD = previous commit compared with the latest commit.
+
+============================================================
+PRACTICAL 5 - GIT MERGE CONFLICT RESOLUTION
+============================================================
+AIM:
+Create two branches, edit the same line differently, generate a merge conflict, resolve it, and complete the merge.
+
+STEP 1 - CREATE FOLDER AND FILE USING GUI
+Create folder GitMergeConflict. Inside it create book.txt containing:
+    Book Status: Available
+
+STEP 2 - OPEN CMD IN THE FOLDER AND SET LOCAL IDENTITY
+    git config user.name "Your Name"
+    git config user.email "your-email@example.com"
+
+STEP 3 - INITIALIZE AND COMMIT
+    git init
+    git add .
+    git commit -m "Initial book status"
+    git branch -M main
+
+STEP 4 - CREATE FEATURE BRANCH
+    git switch -c feature-status
+
+Open book.txt and change the line to:
+    Book Status: Reserved
+Save, then run:
+    git add book.txt
+    git commit -m "Set book status to Reserved"
+
+STEP 5 - SWITCH TO MAIN AND MAKE A DIFFERENT CHANGE
+    git switch main
+
+Open book.txt and change the same line to:
+    Book Status: Issued
+Save, then run:
+    git add book.txt
+    git commit -m "Set book status to Issued"
+
+STEP 6 - CREATE THE CONFLICT
+    git merge feature-status
+Git should report a conflict in book.txt because the same line was changed differently on both branches.
+
+STEP 7 - RESOLVE USING NOTEPAD OR VS CODE
+Open book.txt. It may show conflict markers like:
+    <<<<<<< HEAD
+    Book Status: Issued
+    =======
+    Book Status: Reserved
+    >>>>>>> feature-status
+
+Delete all marker lines and choose the final content, for example:
+    Book Status: Issued (reservation request reviewed)
+
+Save the file. Do not leave any conflict markers in the final file.
+
+STEP 8 - COMPLETE THE MERGE
+    git status
+    git add book.txt
+    git status
+    git commit -m "Resolve book status merge conflict"
+
+STEP 9 - VERIFY
+    type book.txt
+    git log --oneline --graph --all
+    git branch
+    git status
+Expected: nothing to commit, working tree clean.
+
+IMPORTANT:
+- A branch is a separate line of development.
+- A merge conflict occurs when Git cannot automatically combine overlapping changes.
+- To cancel an unfinished merge before resolving it, use git merge --abort.
+
+============================================================
+PRACTICAL 6 - JENKINS FREESTYLE BUILD (WINDOWS)
+============================================================
+AIM:
+Create a Jenkins Freestyle project, execute Windows batch commands, display system information, create build-report.txt, and view Console Output.
+
+STEP 1 - OPEN JENKINS
+Open the Jenkins URL provided by the lab, often http://localhost:8080, and sign in.
+
+STEP 2 - CREATE JOB
+1. Click New Item.
+2. Enter JenkinsFreestyleBuild.
+3. Select Freestyle project.
+4. Click OK.
+
+STEP 3 - ADD BUILD STEP
+Go to Build Steps -> Add build step -> Execute Windows batch command.
+
+STEP 4 - PASTE THIS WINDOWS BATCH SCRIPT
+
+@echo off
+
+echo ====================================
+echo       JENKINS FREESTYLE BUILD
+echo ====================================
+
+REM TODO 1: Display a welcome message with the project name
+echo Welcome to Jenkins Freestyle Build
+
+echo Build Started Successfully
+
+REM TODO 2: Display the current date and time
+echo Current Date and Time: %DATE% %TIME%
+
+REM TODO 3: Display the logged-in username
+echo Logged-in User: %USERNAME%
+
+REM TODO 4: Display operating system information
+ver
+
+REM TODO 5: Display current working directory
+cd
+
+REM Create output directory
+if not exist output mkdir output
+
+echo Output directory created
+
+REM TODO 6: Create build-report.txt inside output directory
+REM File should contain Project Name, Build Date, and Build Status
+(
+echo Project Name: Jenkins Freestyle Build
+echo Build Date: %DATE% %TIME%
+echo Build Status: SUCCESS
+) > output\build-report.txt
+
+REM TODO 7: Display contents of build-report.txt
+type output\build-report.txt
+
+echo ====================================
+echo       BUILD COMPLETED
+echo ====================================
+
+STEP 5 - SAVE AND RUN
+1. Click Save.
+2. Click Build Now.
+3. Click the new build number in Build History.
+4. Click Console Output.
+
+STEP 6 - VERIFY OUTPUT FILE
+Open the job Workspace. Check that output\build-report.txt exists and contains Project Name, Build Date, and Build Status.
+
+WINDOWS COMMANDS TO REMEMBER:
+    echo %DATE% %TIME%   Date and time
+    echo %USERNAME%      Logged-in user
+    ver                  Windows version
+    cd                   Current directory
+    if not exist ...     Create folder if missing
+    type file.txt        Display a text file in Windows CMD
+
+MAC JENKINS NOTE:
+Your home Jenkins runs on macOS. For that Jenkins instance, choose Execute shell and use this equivalent script instead:
+
+#!/bin/bash
+echo "===================================="
+echo "       JENKINS FREESTYLE BUILD"
+echo "===================================="
+echo "Welcome to Jenkins Freestyle Build"
+echo "Build Started Successfully"
+echo "Current Date and Time: $(date)"
+echo "Logged-in User: $(whoami)"
+echo "Operating System: $(uname -a)"
+echo "Current Working Directory: $(pwd)"
+mkdir -p output
+cat > output/build-report.txt <<EOF
+Project Name: Jenkins Freestyle Build
+Build Date: $(date)
+Build Status: SUCCESS
+EOF
+echo "===== BUILD REPORT ====="
+cat output/build-report.txt
+echo "===================================="
+echo "       BUILD COMPLETED"
+echo "===================================="
+
+Do not paste Windows batch syntax such as @echo off into a Mac Execute shell step. Do not use cat in Windows CMD; use type.
+
+============================================================
+PRACTICAL 7 - BUILD AND EXECUTE A JAVA APPLICATION USING JENKINS
+============================================================
+AIM:
+Create Student.java, configure/use the JDK in Jenkins, compile the Java program, run it, and verify Console Output and the generated .class file.
+
+STEP 1 - CREATE PROJECT AND JAVA FILE USING GUI
+Create folder JenkinsJavaDemo. Inside it create Student.java.
+
+STEP 2 - Student.java
+Use the instructor-provided code. The code shared for this practical is:
+
+public class Student {
+    private final int rollNumber;
+    private final String name;
+    private final String department;
+
+    public Student(int rollNumber, String name, String department) {
+        this.rollNumber = rollNumber;
+        this.name = name;
+        this.department = department;
+    }
+
+    public void displayDetails() {
+        System.out.println("Student Details");
+        System.out.println("Roll Number: " + rollNumber);
+        System.out.println("Name: " + name);
+        System.out.println("Department: " + department);
+    }
+
+    public static void main(String[] args) {
+        Student student = new Student(101, "Asha", "Information Technology");
+        student.displayDetails();
+    }
+}
+
+Save Student.java.
+
+STEP 3 - CHECK JAVA LOCALLY
+Open CMD inside JenkinsJavaDemo:
+    java -version
+    javac -version
+    javac Student.java
+    java Student
+
+Expected output:
+    Student Details
+    Roll Number: 101
+    Name: Asha
+    Department: Information Technology
+
+javac compiles the source and creates Student.class. java runs the class.
+
+STEP 4 - CREATE GITHUB REPOSITORY
+Create a blank GitHub repository named JenkinsJavaDemo. Copy its HTTPS URL.
+
+STEP 5 - PUSH THE JAVA PROJECT
+Open CMD inside JenkinsJavaDemo and configure identity locally:
+    git config user.name "Your Name"
+    git config user.email "your-email@example.com"
+
+Then:
+    git init
+    git add .
+    git commit -m "Add Student Java application"
+    git branch -M main
+    git remote add origin YOUR_GITHUB_REPOSITORY_URL
+    git push -u origin main
+
+STEP 6 - CREATE JENKINS JOB
+1. Jenkins Dashboard -> New Item.
+2. Name: JenkinsJavaDemo.
+3. Select Freestyle project -> OK.
+
+STEP 7 - CONFIGURE SOURCE CODE MANAGEMENT
+1. Open Source Code Management -> Git.
+2. Enter the JenkinsJavaDemo GitHub HTTPS URL.
+3. Select branch */main (or the actual branch used).
+
+STEP 8 - CONFIGURE JDK IF REQUIRED
+In Manage Jenkins -> Tools, find JDK installations. Configure a JDK name and the installed JDK home directory if the lab requires it. The JDK bin directory must be available to the Jenkins build agent. Check java -version and javac -version in the build log. A JDK selector may not appear when only one JDK is configured.
+
+STEP 9 - WINDOWS BUILD STEP
+Choose Build Steps -> Add build step -> Execute Windows batch command. Paste:
+
+@echo off
+echo Compiling Student.java...
+javac Student.java
+
+echo.
+echo Executing Student application...
+java Student
+
+echo.
+echo Build completed successfully.
+
+STEP 10 - RUN AND VERIFY
+1. Click Save -> Build Now.
+2. Open build number -> Console Output.
+3. Confirm Student Details, Roll Number, Name, and Department are printed.
+4. Confirm Finished: SUCCESS.
+5. In the Jenkins workspace, verify Student.class exists.
+
+MAC JENKINS NOTE:
+Your home Jenkins runs on macOS. Choose Execute shell there and use:
+
+echo "Compiling Student.java..."
+javac Student.java
+echo "Executing Student application..."
+java Student
+echo "Build completed successfully."
+
+Use Execute Windows batch command only on a Windows Jenkins agent. If the build log says /bin/sh and @echo is not found, the job is using a shell step, not Windows batch.
+
+============================================================
+PRACTICAL 8 - MAVEN PROJECT WITH JUNIT CALCULATOR TESTING
+============================================================
+AIM:
+Create a Calculator Maven project and execute seven JUnit test cases.
+
+STEP 1 - CREATE PROJECT STRUCTURE USING GUI
+CalculatorJUnit\
+    pom.xml
+    src\
+        main\java\Calculator.java
+        test\java\CalculatorTest.java
+
+STEP 2 - Calculator.java
+Save at src\main\java\Calculator.java:
+
+public class Calculator {
+    public int add(int a, int b) {
+        return a + b;
+    }
+
+    public int subtract(int a, int b) {
+        return a - b;
+    }
+
+    public int multiply(int a, int b) {
+        return a * b;
+    }
+
+    public double divide(double a, double b) {
+        if (b == 0) {
+            throw new IllegalArgumentException("Division by zero is not allowed.");
+        }
+        return a / b;
+    }
+}
+
+STEP 3 - CalculatorTest.java
+Save at src\test\java\CalculatorTest.java:
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+class CalculatorTest {
+    private Calculator calculator;
+
+    @BeforeEach
+    void setup() {
+        calculator = new Calculator();
+    }
+
+    @Test
+    void testAddition() {
+        assertEquals(8, calculator.add(5, 3));
+    }
+
+    @Test
+    void testSubtraction() {
+        assertEquals(2, calculator.subtract(5, 3));
+    }
+
+    @Test
+    void testMultiplication() {
+        assertEquals(15, calculator.multiply(5, 3));
+    }
+
+    @Test
+    void testDivision() {
+        assertEquals(2.5, calculator.divide(5, 2), 0.001);
+    }
+
+    @Test
+    void testDivisionByZero() {
+        assertThrows(IllegalArgumentException.class,
+                () -> calculator.divide(5, 0));
+    }
+
+    @Test
+    void testNegativeAddition() {
+        assertEquals(-2, calculator.add(-5, 3));
+    }
+
+    @Test
+    void testMultiplicationByZero() {
+        assertEquals(0, calculator.multiply(10, 0));
+    }
+}
+
+STEP 4 - pom.xml
+Save at the project root as pom.xml:
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.example</groupId>
+    <artifactId>calculator-junit</artifactId>
+    <version>1.0</version>
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.10.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+
+STEP 5 - RUN TESTS
+Open CMD in the folder that contains pom.xml:
+    mvn clean test
+
+Expected:
+    Tests run: 7, Failures: 0, Errors: 0, Skipped: 0
+    BUILD SUCCESS
+
+STEP 6 - VIEW REPORTS
+Open target\surefire-reports. Maven stores the test reports there.
+
+USEFUL MAVEN COMMANDS:
+    mvn compile
+    mvn test
+    mvn clean
+    mvn clean test
+    mvn -DskipTests compile
+
+============================================================
+PRACTICAL 9 - SELENIUM WEBDRIVER LOGIN AUTOMATION
+============================================================
+AIM:
+Use Selenium WebDriver and JUnit to test valid and invalid login and save screenshots.
+
+STEP 1 - CREATE PROJECT STRUCTURE USING GUI
+SeleniumLogin\
+    pom.xml
+    webapp\
+        index.html
+        style.css (use instructor-provided file)
+    src\
+        test\java\LoginTest.java
+
+STEP 2 - USE THE INSTRUCTOR'S webapp/index.html AND style.css
+The page must contain these element IDs:
+    username
+    password
+    loginBtn
+    message
+
+Credentials supplied for the practical:
+    Valid username: student
+    Valid password: Selenium@123
+
+Expected valid message:
+    Login successful!
+
+Expected invalid message:
+    Invalid username or password!
+
+If you need a simple matching index.html for practice, use this sample (prefer instructor-provided HTML in the exam):
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-card">
+        <h2>Student Login</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button id="loginBtn" onclick="login()">Login</button>
+        <p id="message"></p>
+    </div>
+    <script>
+        function login() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const message = document.getElementById("message");
+            if (username === "student" && password === "Selenium@123") {
+                message.textContent = "Login successful!";
+            } else {
+                message.textContent = "Invalid username or password!";
+            }
+        }
+    </script>
+</body>
+</html>
+
+STEP 3 - SIMPLE style.css IF NEEDED
+body { font-family: Arial, sans-serif; background: #f2f2f2; }
+.login-card { width: 320px; margin: 80px auto; padding: 24px; background: white; text-align: center; }
+input, button { width: 100%; box-sizing: border-box; padding: 10px; margin: 8px 0; }
+
+STEP 4 - LoginTest.java
+Save at src\test\java\LoginTest.java. This fills the TODOs from the instructor's starter code:
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.io.FileHandler;
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+public class LoginTest {
+    private WebDriver driver;
+
+    @BeforeEach
+    public void setUp() {
+        // TODO 1: Create ChromeOptions and configure the browser if required.
+        ChromeOptions options = new ChromeOptions();
+
+        // TODO 2: Initialize the ChromeDriver.
+        driver = new ChromeDriver(options);
+
+        // TODO 3: Maximize the browser window.
+        driver.manage().window().maximize();
+
+        // TODO 4: Open the supplied login application.
+        Path page = Paths.get("webapp", "index.html").toAbsolutePath();
+        driver.get(page.toUri().toString());
+    }
+
+    @Test
+    public void validLoginShouldShowSuccessMessage() throws Exception {
+        // TODO 5: Locate username field and enter valid credentials.
+        driver.findElement(By.id("username")).sendKeys("student");
+
+        // TODO 6: Locate password field and enter valid credentials.
+        driver.findElement(By.id("password")).sendKeys("Selenium@123");
+
+        // TODO 7: Click the login button.
+        driver.findElement(By.id("loginBtn")).click();
+
+        // TODO 8: Retrieve the response message.
+        String message = driver.findElement(By.id("message")).getText();
+
+        // TODO 9: Assert that the success message is displayed.
+        assertTrue(message.contains("Login successful!"));
+
+        // TODO 10: Capture screenshot.
+        saveScreenshot("successful-login.png");
+    }
+
+    @Test
+    public void invalidLoginShouldShowErrorMessage() throws Exception {
+        // TODO 11: Enter invalid username/password and click login.
+        driver.findElement(By.id("username")).sendKeys("wrong");
+        driver.findElement(By.id("password")).sendKeys("wrong");
+        driver.findElement(By.id("loginBtn")).click();
+
+        // TODO 12: Retrieve response message and assert error message.
+        String message = driver.findElement(By.id("message")).getText();
+        assertEquals("Invalid username or password!", message);
+
+        // TODO 13: Capture screenshot.
+        saveScreenshot("invalid-login.png");
+    }
+
+    private void saveScreenshot(String fileName) throws Exception {
+        // TODO 14: Capture current browser screen and save in screenshots/.
+        File folder = new File("screenshots");
+        folder.mkdirs();
+        File source = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        File destination = new File("screenshots/" + fileName);
+        FileHandler.copy(source, destination);
+    }
+
+    @AfterEach
+    public void tearDown() {
+        // TODO 15: Close browser safely if initialized.
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+}
+
+STEP 5 - pom.xml
+Save at SeleniumLogin\pom.xml:
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>edu.vesit</groupId>
+    <artifactId>selenium-login-automation</artifactId>
+    <version>1.0</version>
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.10.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.25.0</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+
+STEP 6 - RUN TESTS
+Open CMD in SeleniumLogin (the folder containing pom.xml):
+    mvn clean test
+
+Expected:
+    Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+    BUILD SUCCESS
+
+STEP 7 - CHECK SCREENSHOTS
+The test code creates:
+    screenshots\successful-login.png
+    screenshots\invalid-login.png
+
+NOTES:
+- @BeforeEach runs before each test and opens Chrome.
+- @AfterEach closes Chrome after each test.
+- Selenium Manager in recent Selenium versions can manage the browser driver automatically, subject to network and environment setup.
+- The webapp folder must be in the project root next to pom.xml.
+
+============================================================
+PRACTICAL 10 - GITLAB BASIC BUILD
+============================================================
+AIM:
+Create a GitLab repository containing a simple HTML file and configure a basic build job using .gitlab-ci.yml.
+
+STEP 1 - CREATE PROJECT FOLDER AND FILES USING GUI
+Q10_GitLabBasicBuild\
+    index.html
+    .gitlab-ci.yml
+
+STEP 2 - index.html
+Use the instructor-provided HTML:
+
+<!doctype html>
+<html>
+<head>
+    <title>Build Demo</title>
+</head>
+<body>
+    <h1>GitLab CI/CD Build Demo</h1>
+</body>
+</html>
+
+STEP 3 - .gitlab-ci.yml
+Use the completed instructor TODO structure:
+
+# TODO 1: Declare the pipeline stage(s).
+stages:
+  - build
+
+# TODO 2: Define a job named build_job.
+# TODO 3: Assign the job to the correct stage.
+build_job:
+  stage: build
+  script:
+    - echo "Starting sample build"
+    # TODO 4: Display the project files.
+    - ls -la
+    # TODO 5: Display a build completion message.
+    - echo "Build completed successfully"
+
+IMPORTANT: YAML indentation matters. Use spaces, not tabs. The GitLab runner executes these job commands. A Linux shared/Docker runner uses Linux commands such as ls even when you create and push files from Windows.
+
+STEP 4 - CREATE BLANK GITLAB PROJECT
+1. Sign in to GitLab.
+2. Choose New project -> Create blank project.
+3. Enter a project name such as gitbasicbuild.
+4. Select the required visibility.
+5. Do not initialize with a README if you already have local files and commits.
+6. Create the project and copy its HTTPS URL.
+
+STEP 5 - OPEN CMD IN Q10_GitLabBasicBuild AND SET LOCAL IDENTITY
+    git config user.name "Your Name"
+    git config user.email "your-email@example.com"
+
+STEP 6 - INITIALIZE, COMMIT, AND PUSH (FIRST PUSH ONLY)
+    git init
+    git add .
+    git commit -m "Initial basic build project"
+    git branch -M main
+    git remote add origin YOUR_GITLAB_REPOSITORY_URL
+    git push -u origin main
+
+If the repository is already initialized and connected, do not repeat git init or git remote add. For later changes use:
+    git add .
+    git commit -m "Add GitLab CI build"
+    git push
+
+STEP 7 - VIEW PIPELINE
+Open GitLab project -> Build -> Pipelines. Open the latest pipeline and select build_job. Check the log for the starting message, project files, and completion message.
+
+NOTE ABOUT ACCOUNT VERIFICATION:
+GitLab may require account verification or an eligible runner before pipelines can run. Do not enter payment details just to practise writing the YAML. Repository push and pipeline execution are separate tasks.
+
+============================================================
+PRACTICAL 11 - GITLAB JAVA/MAVEN CI PIPELINE
+============================================================
+AIM:
+Create a Java Maven project, write JUnit tests, and configure GitLab CI with separate build and test stages.
+
+STEP 1 - CREATE PROJECT STRUCTURE USING GUI
+Q11_GitLabJavaCI\
+    pom.xml
+    .gitlab-ci.yml
+    src\
+        main\java\com\example\MessageService.java
+        test\java\com\example\MessageServiceTest.java
+
+STEP 2 - MessageService.java
+Save at src\main\java\com\example\MessageService.java:
+
+package com.example;
+
+public class MessageService {
+    public String getMessage() {
+        return "Welcome to the DevOps practical examination";
+    }
+
+    public int calculateTotal(int first, int second) {
+        return first + second;
+    }
+}
+
+STEP 3 - MessageServiceTest.java
+Save at src\test\java\com\example\MessageServiceTest.java. Completed TODOs:
+
+package com.example;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+class MessageServiceTest {
+    private final MessageService service = new MessageService();
+
+    @Test
+    void shouldReturnWelcomeMessage() {
+        assertEquals("Welcome to the DevOps practical examination", service.getMessage());
+        // TODO: Add your assertion to test service.getMessage().
+        assertNotNull(service.getMessage());
+    }
+
+    @Test
+    void shouldCalculateTotal() {
+        // TODO: Add your assertion to test service.calculateTotal().
+        assertEquals(30, service.calculateTotal(10, 20));
+    }
+}
+
+STEP 4 - pom.xml
+Save at the project root as pom.xml:
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.example</groupId>
+    <artifactId>gitlab-java-ci</artifactId>
+    <version>1.0</version>
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.10.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+
+STEP 5 - .gitlab-ci.yml
+Use the completed instructor TODO structure:
+
+# TODO 1: Specify the Maven Docker image with a compatible JDK.
+image: maven:3.9-eclipse-temurin-11
+
+# TODO 2: Declare build and test stages in the correct order.
+stages:
+  - build
+  - test
+
+# TODO 3: Configure the build job.
+build_job:
+  stage: build
+  script:
+    # TODO 4: Compile the project without running tests.
+    - mvn -B -DskipTests compile
+
+# TODO 5: Configure the test job.
+test_job:
+  stage: test
+  script:
+    # TODO 6: Execute JUnit tests.
+    - mvn -B test
+
+STEP 6 - TEST LOCALLY ON WINDOWS
+Open CMD in the folder containing pom.xml:
+    mvn test
+
+Expected:
+    Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+    BUILD SUCCESS
+
+STEP 7 - CREATE GITLAB PROJECT AND PUSH
+Create a blank GitLab project named gitlab-java-ci. Copy its HTTPS URL.
+
+Open CMD in Q11_GitLabJavaCI and configure local identity:
+    git config user.name "Your Name"
+    git config user.email "your-email@example.com"
+
+For the first push:
+    git init
+    git add .
+    git commit -m "Add Java Maven CI pipeline"
+    git branch -M main
+    git remote add origin YOUR_GITLAB_REPOSITORY_URL
+    git push -u origin main
+
+For later updates:
+    git add .
+    git commit -m "Update Java Maven CI pipeline"
+    git push
+
+STEP 8 - VIEW PIPELINE
+Open GitLab -> Build -> Pipelines. Open the latest pipeline. Confirm build_job is in the build stage and test_job is in the test stage. Open each job log and check for successful Maven compilation and tests.
+
+IMPORTANT:
+- The example Maven Docker image requires a GitLab Runner that supports Docker.
+- Jobs in build and test stages execute in that order.
+- -DskipTests compiles without running tests in the build job; mvn test runs tests in the test job.
+
+============================================================
+FINAL QUICK COMMAND REVISION
+============================================================
+GIT:
+    git init
+    git clone URL
+    git status
+    git add .
+    git commit -m "message"
+    git log --oneline
+    git diff
+    git diff --staged
+    git diff HEAD~1 HEAD
+    git branch
+    git switch -c feature-branch
+    git switch main
+    git merge feature-branch
+    git remote -v
+    git push -u origin main
+    git push
+
+WINDOWS COMMAND PROMPT:
+    dir                  List files and folders
+    cd                   Show current directory
+    type file.txt        Display a text file
+    ver                  Show Windows version
+    echo %DATE% %TIME%   Show date and time
+    echo %USERNAME%      Show username
+
+JAVA:
+    java -version
+    javac -version
+    javac Student.java
+    java Student
+
+MAVEN:
+    mvn compile
+    mvn test
+    mvn clean
+    mvn clean test
+    mvn -DskipTests compile
+
+JENKINS:
+    Windows agent -> Execute Windows batch command
+    Mac/Linux agent -> Execute shell
+    Build Now -> Build History -> build number -> Console Output
+
+GIT CONFIGURATION ON A PUBLIC COMPUTER:
+Set identity separately inside each repository:
+    git config user.name "Your Name"
+    git config user.email "your-email@example.com"
+
+After finishing that repository, remove its local identity:
+    git config --local --unset user.name
+    git config --local --unset user.email
+
+This removes the local commit identity, but does not automatically remove saved GitHub/GitLab login credentials. Also sign out of the browser and remove saved credentials from Windows Credential Manager if you used them.
+
+END OF DEVOPS PRACTICAL EXAM GUIDE
